@@ -1,0 +1,23 @@
+<h2>Listagem de pessoas</h2>  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (people of peoples; track people.id; let i = $index) {
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{ people.name }}
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="viewDwtails(people.id)">Detalhes</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>

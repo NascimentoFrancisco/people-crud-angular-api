@@ -1,0 +1,68 @@
+<div *ngIf="people">
+  <div class="container mt-2">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                  <div class="card-body">
+                  <h2>Detalhes da Pessoa</h2>
+                    <h5 class="card-title">{{ people.name }}</h5>
+                    <p class="card-text">Data de nascimento: <b>{{ people.date_of_birth | date: 'dd/MM/yy'}}</b></p>
+                    <p class="card-text">Gênero: <b>{{ people.gender }}</b></p>
+                    <button (click)="openConfirmationModal()" class="btn btn-danger me-2">Excluir</button>
+                    <button (click)="openEditModal()" class="btn btn-primary">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+ <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModalDelete}" [style.display]="showModalDelete ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmação de Exclusão</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeConfirmationModal()"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja excluir {{ people.name }}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeConfirmationModal()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="deletePeople()">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModalEdit}" [style.display]="showModalEdit ? 'block' : 'none'">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Pessoa</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeEditModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="people.name">
+          </div>
+          <div class="mb-3">
+            <label for="date_of_birth" class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" [(ngModel)]="people.date_of_birth">
+          </div>
+          <div class="mb-3">
+            <label for="gender" class="form-label">Gênero</label>
+            <input type="text" class="form-control" id="gender" name="gender" [(ngModel)]="people.gender">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="updatePeople()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
