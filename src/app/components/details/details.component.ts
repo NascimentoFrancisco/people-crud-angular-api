@@ -40,7 +40,7 @@ export class DetailsComponent implements OnInit {
     const id = this.people.id;
     this.peopleService.delete(id).subscribe({
       next: () => {
-        this.router.navigate(['/list']);
+        this.router.navigate(['/']);
       },
       error: (e) => console.log(e)
     });
